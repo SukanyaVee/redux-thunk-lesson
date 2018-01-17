@@ -18,6 +18,15 @@ export function hideNotification() {
     type: HIDE_NOTIFICATION
   };
 };
+// MIDDLWARE
+export function showAndHideNotification(text) {
+  return (dispatch)=> {
+    dispatch(showNotification(text))
+    setTimeout(()=> {
+      dispatch(hideNotification())
+    }, 1500)
+  }
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
