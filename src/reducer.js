@@ -18,13 +18,17 @@ export function hideNotification() {
     type: HIDE_NOTIFICATION
   };
 };
-// MIDDLWARE
+// MIDDLEWARE
 export function showAndHideNotification(text) {
-  return (dispatch)=> {
+  return (dispatch, getState)=> {
+    if(getState().userWantsNotifications)
+    {
+      
     dispatch(showNotification(text))
     setTimeout(()=> {
       dispatch(hideNotification())
     }, 1500)
+    }
   }
 }
 
